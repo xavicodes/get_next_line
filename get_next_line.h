@@ -6,7 +6,7 @@
 /*   By: xaviermonteiro <xaviermonteiro@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 10:30:35 by xaviermonte       #+#    #+#             */
-/*   Updated: 2024/06/19 10:44:18 by xaviermonte      ###   ########.fr       */
+/*   Updated: 2024/06/19 12:49:43 by xaviermonte      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 # ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
+#endif
 
 # ifndef BUFFER_SIZE
 # define BUFFER_SIZE 10
@@ -25,9 +26,17 @@
 
 typedef struct s_list
 {
-        char    *str_snip;
+        char    *str_buf;
         struct s_list   *next;
 }       t_list;
 
 char *get_next_line(int fd);
+
+t_list *findlastnode(t_list *list);
+
+int     scanneweline( t_list *list);
+
+void create_list(t_list **list,int fd);
+
+void linkbuf(t_list **list, char *buf);
 
