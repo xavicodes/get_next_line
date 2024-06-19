@@ -6,12 +6,52 @@
 /*   By: xaviermonteiro <xaviermonteiro@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 09:29:46 by xaviermonte       #+#    #+#             */
-/*   Updated: 2024/06/19 14:23:44 by xaviermonte      ###   ########.fr       */
+/*   Updated: 2024/06/19 17:43:42 by xaviermonte      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+void cleanprev(t_list *list)
+{
+        t_list *temp;
+
+         while(list != NULL)
+        {
+        *temp = *list->next;
+                free(list->str_buf);
+                free(list);
+                list = temp;
+                list = list->next;
+        }
+}
+void cleanandget(t_list **list)
+{
+        t_list *new_node;
+        t_list *last_node;
+        char *buf;
+        int i;
+        int a;
+
+        i = 0;
+        a = 0;
+        last_node = findlastnode(list);
+        buf = malloc(sizeof(char)* BUFFER_SIZE);
+        new_node = malloc (sizeof(t_list));
+        if(buf == NULL || new_node == NULL)
+                return ;
+        while(last_node->str_buf[i] != '\0' || last_node->str_buf[i] != '\n')
+                ++i;
+        while(last_node->str_buf[i] != '\0')
+        {
+                buf[a++] = last_node[i++]; //questions here;
+        }
+        buf[a] = '\0';
+        new_node->str_buf = buf;
+        new_node->next = NULL;
+        cleanprev(list);
+        
+}
 void linkbuf(t_list **list, char *buf)
 {
         t_list *new_node;
@@ -88,4 +128,16 @@ if(fd < 0 || BUFFER_SIZE <= 0)
                 return NULL;
         
         next_line = getline(list);
+
+        if(next_line == NULL)
+                return (NULL);
+        clearbefore(list);
 }
+
+
+/* int main(void)
+{
+        int fd;
+
+        fd = open("file.txt")
+} */

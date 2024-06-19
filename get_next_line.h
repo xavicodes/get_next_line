@@ -6,7 +6,7 @@
 /*   By: xaviermonteiro <xaviermonteiro@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 10:30:35 by xaviermonte       #+#    #+#             */
-/*   Updated: 2024/06/19 12:49:43 by xaviermonte      ###   ########.fr       */
+/*   Updated: 2024/06/19 17:43:23 by xaviermonte      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef struct s_list
 
 char *get_next_line(int fd);
 
+char *getline(t_list *list);
+
 t_list *findlastnode(t_list *list);
 
 int     scanneweline( t_list *list);
@@ -39,4 +41,8 @@ int     scanneweline( t_list *list);
 void create_list(t_list **list,int fd);
 
 void linkbuf(t_list **list, char *buf);
+
+void cleanandget(t_list **list);
+
+void cleanprev(t_list *list);
 
