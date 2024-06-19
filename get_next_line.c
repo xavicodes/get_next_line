@@ -6,7 +6,7 @@
 /*   By: xaviermonteiro <xaviermonteiro@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 09:29:46 by xaviermonte       #+#    #+#             */
-/*   Updated: 2024/06/19 12:49:43 by xaviermonte      ###   ########.fr       */
+/*   Updated: 2024/06/19 14:23:44 by xaviermonte      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,31 @@ void linkbuf(t_list **list, char *buf)
                 last_node->next = new_node;
                 new_node->str_buf = buf;
                 new_node->next = NULL;
+}
+char *getline(t_list *list)
+{
+        int restcount;
+        int a;
+        char *rest;
+        
+        restcount = 0;
+        if(list == NULL)
+                return (NULL);
+        while(list->str_buf != '\n') 
+                a++;
+        if(list->str_buf = '\n') //dont know if '\n' counts in the rest or the main string!
+                a++;
+        while(list->str_buf != '\n')
+        {
+        restcount++;
+        a++;
+        }
+        rest = malloc(sizeof(char)*restcount + 1);
+        a = a - restcount;
+        restcount = 0;
+        while(list->str_buf[a])
+                rest[restcount++] = list->str_buf[a++];
+        return(rest);
 }
 void create_list(t_list **list,int fd)
 {
@@ -58,4 +83,9 @@ if(fd < 0 || BUFFER_SIZE <= 0)
         return NULL;
 
         create_list(&list, fd);
+
+        if(list == NULL)
+                return NULL;
+        
+        next_line = getline(list);
 }

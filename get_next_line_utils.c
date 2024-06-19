@@ -11,7 +11,7 @@ t_list *findlastnode(t_list *list)
         return (list);
 }
 
-int     scanneweline( t_list *list)
+int     scannewline( t_list *list)
 {
         int i;
 
