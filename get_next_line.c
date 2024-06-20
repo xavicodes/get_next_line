@@ -6,7 +6,7 @@
 /*   By: xaviermonteiro <xaviermonteiro@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 09:29:46 by xaviermonte       #+#    #+#             */
-/*   Updated: 2024/06/19 17:43:42 by xaviermonte      ###   ########.fr       */
+/*   Updated: 2024/06/20 11:57:20 by xaviermonte      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,13 +131,19 @@ if(fd < 0 || BUFFER_SIZE <= 0)
 
         if(next_line == NULL)
                 return (NULL);
-        clearbefore(list);
+        cleanandget(list);
 }
 
 
-/* int main(void)
+int main(void)
 {
         int fd;
+        char *line;
 
-        fd = open("file.txt")
-} */
+        fd = open("file.txt" , O_RDONLY);
+
+        line = get_next_line(fd);
+
+        while(line)
+        printf("->%s",line++);
+}
